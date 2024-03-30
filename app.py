@@ -34,7 +34,7 @@ def get_current_weather(city):
     return temperature, humidity, weather_desc, pressure
 
 # Streamlit UI
-st.markdown("<h1 style='color: white; font-family: Copperplate Gothic Bold;'>??? Weather Forecasting Application</h1>", unsafe_allow_html=True)
+st.markdown("<h1 style='color: white; font-family: Copperplate Gothic Bold;'>🌤️ Weather Forecasting Application</h1>", unsafe_allow_html=True)
 
 city = st.text_input("Enter city name")
 if st.button("Get Weather"):
@@ -42,8 +42,11 @@ if st.button("Get Weather"):
     if weather_data:
         temperature, humidity, weather_desc, pressure = weather_data
         
-        # Display weather information without the table
-        st.write(f"Temperature ( C): {temperature}")
-        st.write(f"Humidity (%): {humidity}")
-        st.write(f"Weather: {weather_desc}")
-        st.write(f"Pressure (hPa): {pressure}")
+        # Display weather information in tabular form
+        weather_table = {
+            'Temperature (°C)': [temperature],
+            'Humidity (%)': [humidity],
+            'Weather': [weather_desc],
+            'Pressure (hPa)': [pressure]
+        }
+        st.table(weather_table)
