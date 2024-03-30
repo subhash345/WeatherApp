@@ -1,5 +1,4 @@
 import requests
-import json
 import streamlit as st
 
 def get_current_weather(city):
@@ -22,8 +21,14 @@ def get_current_weather(city):
         return None
         
     # Extract relevant current weather information
-    temperature = data['main']['temp']  
+    temperature = data['main']['temp']
+    
+    # Convert temperature from Kelvin to Celsius
+    temperature = round(temperature, 2)
+    
     return temperature
+
+st.markdown("<h1 style='color: white; font-family: Copperplate Gothic Bold;'>🌤️ Weather Forecasting Application</h1>", unsafe_allow_html=True)
 
 city = st.text_input("Enter city name")
 if st.button("Get Weather"):
