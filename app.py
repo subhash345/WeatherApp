@@ -28,7 +28,7 @@ def get_current_weather(city):
     
     return temperature
 
-st.markdown("<h1 style='color: Red; font-family: italic '> Weather Forecasting Application</h1>", unsafe_allow_html=True)
+st.markdown("<h1 style='color: red; font-family: Italic Bold;'> Weather Forecasting Application</h1>", unsafe_allow_html=True)
 
 city = st.text_input("Enter city name")
 if st.button("Get Weather"):
