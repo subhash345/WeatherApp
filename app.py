@@ -1,5 +1,6 @@
 import requests
 import streamlit as st
+import json
 from datetime import datetime
 
 def get_current_weather(city):
@@ -22,16 +23,13 @@ def get_current_weather(city):
         st.error(f"Error: Failed to parse response JSON - {err}")
         return None, None
     
-    # Extract relevant current weather information
     temperature = data['main']['temp']
     humidity = data['main']['humidity']
     weather_desc = data['weather'][0]['description']
     pressure = data['main']['pressure']
     
-    # Convert temperature from Kelvin to Celsius
     temperature = round(temperature, 2)
     
-    # Fetch weather forecast data
     forecast_url = f"https://api.openweathermap.org/data/2.5/forecast?q={city}&appid={api_key}&units=metric"
     try:
         forecast_response = requests.get(forecast_url)
@@ -49,7 +47,6 @@ def get_current_weather(city):
         st.error(f"Error parsing forecast JSON: {err}")
         return None, None
     
-    # Extract relevant forecast data for the next 5 hours
     forecast_table = {'Time': [], 'Temperature (°C)': [], 'Weather': []}
     for forecast in forecast_data['list'][:5]:
         forecast_time = datetime.utcfromtimestamp(forecast['dt']).strftime('%Y-%m-%d %H:%M:%S')
@@ -63,7 +60,22 @@ def get_current_weather(city):
     return (temperature, humidity, weather_desc, pressure), forecast_table
 
 # Streamlit UI
+st.set_page_config(page_title="Weather Forecasting Application", page_icon="🌤️")
 st.markdown("<h1 style='color: white; font-family: Copperplate Gothic Bold;'>🌤️ Weather Forecasting Application</h1>", unsafe_allow_html=True)
+
+st.markdown(
+    f"""
+    <style>
+    .stApp {{
+        background-image: url("https://images.pexels.com/photos/691668/pexels-photo-691668.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
+        background-size: fill;
+        background-position: top ;
+        color: blue;
+    }}
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
 city = st.text_input("Enter city name")
 if st.button("Get Weather"):
