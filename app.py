@@ -63,14 +63,15 @@ def get_current_weather(city):
 st.set_page_config(page_title="Weather Forecasting Application", page_icon="🌤️")
 st.markdown("<h1 style='color: white; font-family: Copperplate Gothic Bold;'>🌤️ Weather Forecasting Application</h1>", unsafe_allow_html=True)
 
+# Add background image
 st.markdown(
     f"""
     <style>
     .stApp {{
         background-image: url("https://images.pexels.com/photos/691668/pexels-photo-691668.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
-        background-size: fill;
-        background-position: top ;
-        color: blue;
+        background-size: cover;
+        background-position: center;
+        color: white;
     }}
     </style>
     """,
