@@ -47,15 +47,18 @@ def get_current_weather(city):
         st.error(f"Error parsing forecast JSON: {err}")
         return None, None
     
-    forecast_table = {'Time': [], 'Temperature (°C)': [], 'Weather': []}
-    for forecast in forecast_data['list'][:5]:
-        forecast_time = datetime.utcfromtimestamp(forecast['dt']).strftime('%Y-%m-%d %H:%M:%S')
-        forecast_temp = forecast['main']['temp']
-        forecast_weather = forecast['weather'][0]['description']
-        
-        forecast_table['Time'].append(forecast_time)
-        forecast_table['Temperature (°C)'].append(round(forecast_temp, 2))
-        forecast_table['Weather'].append(forecast_weather)
+    forecast_table = {'Date': [], 'Temperature (°C)': [], 'Weather': []}
+    today = datetime.utcnow().date()
+    for forecast in forecast_data['list']:
+        forecast_date = datetime.utcfromtimestamp(forecast['dt']).date()
+        if forecast_date != today:
+            forecast_temp = forecast['main']['temp']
+            forecast_weather = forecast['weather'][0]['description']
+            
+            forecast_table['Date'].append(forecast_date.strftime('%Y-%m-%d'))
+            forecast_table['Temperature (°C)'].append(round(forecast_temp, 2))
+            forecast_table['Weather'].append(forecast_weather)
+            today = forecast_date
     
     return (temperature, humidity, weather_desc, pressure), forecast_table
 
@@ -68,7 +71,7 @@ st.markdown(
     f"""
     <style>
     .stApp {{
-        background-image: url("https://images.pexels.com/photos/691668/pexels-photo-691668.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
+        background-image: url("https://images.pexels.com/photos/1592263/pexels-photo-1592263.jpeg");
         background-size: cover;
         background-position: center;
         color: white;
@@ -94,6 +97,6 @@ if st.button("Get Weather"):
         }
         st.table(current_weather_table)
         
-        # Display weather forecast for the next 5 hours in tabular form
-        st.write("Weather Forecast for the Next 5 Hours:")
+        # Display weather forecast for the next 5 days in tabular form
+        st.write("Weather Forecast for the Next 5 Days:")
         st.table(forecast_table)
