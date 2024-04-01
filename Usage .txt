@@ -1,0 +1,25 @@
+Usage 
+
+To use the Weather Forecasting Application, follow these steps: 
+
+Make sure you have the required libraries and API key installed. 
+
+Open a terminal and navigate to the directory where the app.py (in this case) file is located. 
+
+Run the following command in the terminal to start the application: 
+
+streamlit run app.py 
+
+This command will start the Streamlit application and open a web page in your default browser. 
+
+Enter the name of the city in the text input field. 
+
+The text input field is located at the top of the page, and it is labeled "City Name". Type the name of the city you want to retrieve weather information for in the text input field. 
+
+Click on the "Get Weather" button to retrieve weather information. 
+
+The "Get Weather" button is located below the text input field. Click on the button to retrieve the current weather and forecast for the next 5 days for the specified city. 
+
+View the current weather and forecast data. 
+
+After clicking the "Get Weather" button, the application displays the current weather and forecast for the next 5 days in tabular form. 
