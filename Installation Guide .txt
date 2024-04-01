@@ -1,0 +1,21 @@
+Installation Guide 
+
+ 
+
+ To run the code, you will need to have Python installed on your computer. 
+
+Once you have installed Python, you can install the necessary libraries by running the following command in your terminal, VS code or command prompt: 
+
+pip install requests 
+
+pip install streamlit 
+
+ 
+
+JSON and datetime is a built-in module and typically does not require separate installation. 
+
+To effectively run the code, the primary requirement is having Python installed on your computer, which serves as the programming language environment. Once Python is installed, you'll need to add some essential libraries to your environment. This is done using a package manager called pip, which simplifies the process of installing Python libraries. In this case, you'll want to install two specific libraries: requests and streamlit. 
+
+With these steps completed, Python environment should be fully equipped to run the project smoothly. 
+
+
